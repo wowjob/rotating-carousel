@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <script>
+      window.rotatingCarousel = {
+        postURL: '#',
+        maxSelected: 3,
+        list: [
+          {
+            id: 1,
+            checked: false,
+            dataId: 111,
+            label: 'Fruity 1',
+            backgroundImage: 'https://picsum.photos/id/100/800/600.webp',
+            description:
+              'Ranges from light and floral, like crisp pears, to the earthy freshness of pine and moss.',
+            textColour: '#1abc9c',
+          },
+          {
+            id: 2,
+            checked: true,
+            dataId: 112,
+            label: 'Peaty 2',
+            backgroundImage: 'https://picsum.photos/id/101/800/600.webp',
+            description:
+              'Distinctive earthy and organic character, reminiscent of a wet mossy terrain or recently turned soil.',
+            textColour: '#2ecc71',
+          },
+          {
+            id: 3,
+            checked: false,
+            dataId: 113,
+            label: 'Sweet',
+            backgroundImage: 'https://picsum.photos/id/102/800/600.webp',
+            description:
+              'Evokes flavors of honey, vanilla, or caramel, reminiscent of a sugary treat or dessert.',
+            textColour: '#3498db',
+          },
+          {
+            id: 4,
+            checked: true,
+            dataId: 114,
+            label: 'Spicy',
+            backgroundImage: 'https://picsum.photos/id/103/800/600.webp',
+            description:
+              'Hints of pepper, cloves, or cinnamon that tingle the palate, offering warmth and complexity.',
+            textColour: '#9b59b6',
+          },
+          {
+            id: 5,
+            checked: false,
+            dataId: 115,
+            label: 'Malty',
+            backgroundImage: 'https://picsum.photos/id/104/800/600.webp',
+            description:
+              'Brings forward the rich, grainy flavors typical of malted barley, like toasted bread or cereal.',
+            textColour: '#34495e',
+          },
+          {
+            id: 6,
+            checked: false,
+            dataId: 116,
+            label: 'Nutty',
+            backgroundImage: 'https://picsum.photos/id/105/800/600.webp',
+            description:
+              'Emulates flavors of almonds, walnuts, or hazelnuts, giving a deep, earthy profile.',
+            textColour: '#16a085',
+          },
+          {
+            id: 7,
+            checked: false,
+            dataId: 117,
+            label: 'Smokey',
+            backgroundImage: 'https://picsum.photos/id/106/800/600.webp',
+            description:
+              'Characterized by a lingering aroma and flavor of wood smoke, as if from a campfire or burning embers.',
+            textColour: '#27ae60',
+          },
+        ],
+      }
+    </script>
+    <div id="rotating-carousel"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

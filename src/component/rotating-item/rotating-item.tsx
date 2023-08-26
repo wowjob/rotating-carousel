@@ -1,0 +1,45 @@
+import {
+  SRotatingInput,
+  SRotatingItem,
+  SRotatingLabel,
+} from './rotating-item.style'
+import type { TRotatingItem } from './rotating-item.type'
+
+export const RotatingItem = ({
+  backgroundImage,
+  dataId,
+  description,
+  label,
+  id,
+  textColour,
+  onChange,
+  onFocus,
+  checked,
+  focused,
+  angle,
+}: TRotatingItem) => {
+  return (
+    <SRotatingItem
+      $backgroundImage={backgroundImage}
+      $dataId={dataId}
+      $label={label}
+      $textColour={textColour}
+      $focused={focused}
+      $angle={angle}
+    >
+      <SRotatingInput
+        onChange={onChange}
+        onFocus={onFocus}
+        type="checkbox"
+        id={`rotating-item-selector-${id}`}
+        data-id={dataId}
+        checked={checked}
+        autoFocus={focused}
+      />
+      <div>{label}</div>
+      <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
+        {description}
+      </SRotatingLabel>
+    </SRotatingItem>
+  )
+}
