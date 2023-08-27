@@ -1,9 +1,20 @@
 import { useEffect, useReducer, useRef } from 'react'
-import type { ChangeEvent, FocusEvent, KeyboardEvent, MouseEvent } from 'react'
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  TouchEvent,
+} from 'react'
 import {
   SButton,
+  SCurrent,
   SItemGrid,
+  SRemoveButton,
   SRotatingCarousel,
+  SRotatingInfo,
+  SRotatingMainTitle,
+  SSelected,
 } from './rotating-carousel.style'
 import {
   initialValue,
@@ -15,6 +26,11 @@ import { generateSequence } from '../../util'
 
 export const RotatingCarousel = () => {
   const rotatingCarouselRef = useRef(null)
+  const swipeData = useRef({
+    startX: 0,
+    endX: 0,
+  })
+
   const [state, dispatch] = useReducer(rotatingCarouselReducer, initialValue)
   const {
     list,
@@ -25,6 +41,9 @@ export const RotatingCarousel = () => {
     lastFocused,
     minimumItemNumber,
     originalItemNumber,
+    maxSelectedText,
+    currentSelectedJoinText,
+    mainTitle,
   } = state
 
   useEffect(() => {
@@ -55,22 +74,24 @@ export const RotatingCarousel = () => {
     dispatch(A.actionRemoveInput(name))
   }
 
-  // fix for Safari
-  // const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
-  //   if (
-  //     e.key === 'Tab' &&
-  //     rotatingCarouselRef.current &&
-  //     rotatingCarouselRef.current.contains(document.activeElement)
-  //   ) {
-  //     e.preventDefault()
-  //     if (e.shiftKey) {
-  //       focusPrev()
-  //     } else {
-  //       focusNext()
-  //     }
-  //     console.log(e.key)
-  //   }
-  // }
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    // Set the start position of the swipe
+    swipeData.current.startX = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    // Set the end position of the swipe
+    swipeData.current.endX = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (swipeData.current.startX - swipeData.current.endX > 100) {
+      // If the difference in the start and end position is more than 100px, consider it a swipe
+      focusNext()
+    } else if (swipeData.current.endX - swipeData.current.startX > 100) {
+      focusPrev()
+    }
+  }
 
   const lastFocusedIndex = +lastFocused.split('-')[3] - 1
   const howManyLeftAndRight = 6
@@ -87,37 +108,49 @@ export const RotatingCarousel = () => {
   return (
     <div>
       <SRotatingCarousel
-        // onKeyUp={onKeyUp}
         ref={rotatingCarouselRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        $backgroundImage={list[whichOneFocused].backgroundImage || ''}
       >
-        <h1>WHAT FLAVOURS ARE YOU FEELING?</h1>
-        <div>
-          <span>Please select up to {maxSelected} flavours</span>
+        <SRotatingMainTitle>{mainTitle}</SRotatingMainTitle>
+
+        <SRotatingInfo>
+          <span>{maxSelectedText}</span>
           {selectedList.length > 0 && (
             <span>
+              {' '}
               ({selectedList.length}/{maxSelected})
             </span>
           )}
-        </div>
+        </SRotatingInfo>
 
-        <div>
-          {selectedList.length > 0 && (
-            <div>
-              {selectedList.map(({ dataId, label }) => (
-                <button key={dataId} name={String(dataId)} onClick={removeItem}>
-                  {label} &times;
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        <SSelected>
+          {selectedList.length > 0 &&
+            selectedList.map(({ dataId, label }) => (
+              <SRemoveButton
+                key={dataId}
+                name={String(dataId)}
+                onClick={removeItem}
+              >
+                {label}
+              </SRemoveButton>
+            ))}
+        </SSelected>
 
-        <div>
-          {whichOneFocusedPretty}/{originalItemNumber}
-        </div>
+        <SCurrent>
+          {whichOneFocusedPretty}
+          {currentSelectedJoinText}
+          {originalItemNumber}
+        </SCurrent>
 
         <SItemGrid>
-          <SButton onClick={focusPrev}>Prev</SButton>
+          <SButton
+            aria-label="previous item"
+            $direction="left"
+            onClick={focusPrev}
+          />
           <div>
             {list.map(
               (
@@ -129,6 +162,7 @@ export const RotatingCarousel = () => {
                   id,
                   textColour,
                   checked,
+                  itemImage,
                 },
                 key,
               ) => (
@@ -141,7 +175,7 @@ export const RotatingCarousel = () => {
                       : 12
                   }
                   textColour={textColour}
-                  backgroundImage={backgroundImage}
+                  backgroundImage={itemImage}
                   dataId={dataId}
                   description={description}
                   label={label}
@@ -153,7 +187,12 @@ export const RotatingCarousel = () => {
               ),
             )}
           </div>
-          <SButton onClick={focusNext}>Next</SButton>
+
+          <SButton
+            aria-label="next item"
+            $direction="right"
+            onClick={focusNext}
+          />
         </SItemGrid>
       </SRotatingCarousel>
       <div>

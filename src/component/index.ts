@@ -1,4 +1,6 @@
 // component
+export { Global } from './global'
+export { Image } from './image'
 export { RotatingCarousel } from './rotating-carousel'
 export { RotatingItem } from './rotating-item'
 

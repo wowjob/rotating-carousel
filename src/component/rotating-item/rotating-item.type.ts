@@ -1,14 +1,15 @@
 import type { ChangeEvent, FocusEvent, ReactNode } from 'react'
 
 export type TRotatingItemBase = {
-  dataId: number
+  dataId?: number
   id?: number
-  label: string
-  textColour: string
-  backgroundImage: string
+  label?: string
+  textColour?: string
+  itemImage?: string
+  backgroundImage?: string
   children?: ReactNode
   focused?: boolean
-  angle: number
+  angle?: number
   checked?: boolean
 }
 

@@ -13,6 +13,9 @@ type TRotatingCarousel = {
   lastFocused: string
   minimumItemNumber: number
   originalItemNumber: number
+  maxSelectedText: string
+  currentSelectedJoinText: string
+  mainTitle: string
 }
 export const initialValue: TRotatingCarousel = {
   ...window.rotatingCarousel,
@@ -27,7 +30,7 @@ console.log(initialValue)
 const getHowManySelected = (list: TRotatingItem[]) => {
   const selectedMap: Record<number, boolean> = list
     .filter(({ checked }) => checked)
-    .map(({ dataId }) => dataId)
+    .map(({ dataId }) => dataId || '')
     .reduce((a, c) => ({ ...a, [c]: true }), {})
 
   return Object.keys(selectedMap).map((dataId) =>

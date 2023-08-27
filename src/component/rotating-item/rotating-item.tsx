@@ -1,4 +1,8 @@
+import { Image } from '..'
 import {
+  SRotatingDescription,
+  SRotatingImageText,
+  SRotatingImageWrapper,
   SRotatingInput,
   SRotatingItem,
   SRotatingLabel,
@@ -19,27 +23,33 @@ export const RotatingItem = ({
   angle,
 }: TRotatingItem) => {
   return (
-    <SRotatingItem
-      $backgroundImage={backgroundImage}
-      $dataId={dataId}
-      $label={label}
-      $textColour={textColour}
-      $focused={focused}
-      $angle={angle}
-    >
-      <SRotatingInput
-        onChange={onChange}
-        onFocus={onFocus}
-        type="checkbox"
-        id={`rotating-item-selector-${id}`}
-        data-id={dataId}
-        checked={checked}
-        autoFocus={focused}
-      />
-      <div>{label}</div>
-      <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
-        {description}
-      </SRotatingLabel>
-    </SRotatingItem>
+    <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
+      <SRotatingItem
+        $backgroundImage={backgroundImage}
+        $dataId={dataId}
+        $label={label}
+        $textColour={textColour}
+        $focused={focused}
+        $angle={angle}
+      >
+        <SRotatingInput
+          onChange={onChange}
+          onFocus={onFocus}
+          type="checkbox"
+          id={`rotating-item-selector-${id}`}
+          data-id={dataId}
+          checked={checked}
+          autoFocus={focused}
+        />
+        <SRotatingImageWrapper $checked={checked}>
+          <Image src={backgroundImage || ''} alt={`${label}: ${description}`} />
+          <SRotatingImageText $textColour={textColour}>
+            {label}
+          </SRotatingImageText>
+        </SRotatingImageWrapper>
+
+        <SRotatingDescription>{description}</SRotatingDescription>
+      </SRotatingItem>
+    </SRotatingLabel>
   )
 }
