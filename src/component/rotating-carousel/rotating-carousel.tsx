@@ -39,6 +39,7 @@ export const RotatingCarousel = () => {
     maxSelectedText,
     currentSelectedJoinText,
     mainTitle,
+    action,
   } = state
 
   useEffect(() => {
@@ -102,7 +103,16 @@ export const RotatingCarousel = () => {
 
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement
-    console.log(name)
+
+    if (action.buttonList.includes(name)) {
+      const className = `.${action.prefix}${name} > :first-child`
+      const actionElement = document.querySelector(className)
+      if (actionElement) {
+        const href = actionElement.getAttribute('href')
+
+        console.log(`I can redirect to: ${href}`)
+      }
+    }
   }
 
   return (

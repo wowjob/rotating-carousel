@@ -4,6 +4,11 @@ import { C } from './rotating-carousel.constant'
 
 const minimumItemNumber = 24
 
+type TAction = {
+  buttonList: string[]
+  prefix: string
+}
+
 type TRotatingCarousel = {
   postURL: string
   maxSelected: number
@@ -16,7 +21,9 @@ type TRotatingCarousel = {
   maxSelectedText: string
   currentSelectedJoinText: string
   mainTitle: string
+  action: TAction
 }
+
 export const initialValue: TRotatingCarousel = {
   ...window.rotatingCarousel,
   originalItemNumber: window.rotatingCarousel.list.length,
