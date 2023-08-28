@@ -46,7 +46,6 @@ export const RotatingCarousel = () => {
     if (!initialized) {
       dispatch(A.actionInit())
     }
-    console.log(state)
   }, [initialized])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,8 +108,6 @@ export const RotatingCarousel = () => {
       const actionElement = document.querySelector(className)
       if (actionElement) {
         const href = actionElement.getAttribute('href')
-
-        console.log(`I can redirect to: ${href}`)
       }
     }
   }

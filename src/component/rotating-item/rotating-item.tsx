@@ -21,38 +21,35 @@ export const RotatingItem = ({
   checked,
   focused,
   angle,
-}: TRotatingItem) => {
-  console.log(focused)
-  return (
-    <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
-      <SRotatingItem
-        $backgroundImage={backgroundImage}
-        $dataId={dataId}
-        $label={label}
-        $textColour={textColour}
-        $focused={focused}
-        $angle={angle}
-      >
-        <SRotatingInput
-          onChange={onChange}
-          onFocus={onFocus}
-          type="checkbox"
-          id={`rotating-item-selector-${id}`}
-          data-id={dataId}
-          checked={checked}
-          autoFocus={focused}
-        />
-        <SRotatingImageWrapper $focused={focused} $checked={checked}>
-          <Image src={backgroundImage || ''} alt={`${label}: ${description}`} />
-          <SRotatingImageText $textColour={textColour}>
-            {label}
-          </SRotatingImageText>
-        </SRotatingImageWrapper>
+}: TRotatingItem) => (
+  <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
+    <SRotatingItem
+      $backgroundImage={backgroundImage}
+      $dataId={dataId}
+      $label={label}
+      $textColour={textColour}
+      $focused={focused}
+      $angle={angle}
+    >
+      <SRotatingInput
+        onChange={onChange}
+        onFocus={onFocus}
+        type="checkbox"
+        id={`rotating-item-selector-${id}`}
+        data-id={dataId}
+        checked={checked}
+        autoFocus={focused}
+      />
+      <SRotatingImageWrapper $focused={focused} $checked={checked}>
+        <Image src={backgroundImage || ''} alt={`${label}: ${description}`} />
+        <SRotatingImageText $textColour={textColour}>
+          {label}
+        </SRotatingImageText>
+      </SRotatingImageWrapper>
 
-        <SRotatingDescription $focused={focused}>
-          {description}
-        </SRotatingDescription>
-      </SRotatingItem>
-    </SRotatingLabel>
-  )
-}
+      <SRotatingDescription $focused={focused}>
+        {description}
+      </SRotatingDescription>
+    </SRotatingItem>
+  </SRotatingLabel>
+)

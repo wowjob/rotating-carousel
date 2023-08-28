@@ -32,8 +32,6 @@ export const initialValue: TRotatingCarousel = {
   selectedList: [],
 }
 
-console.log(initialValue)
-
 const getHowManySelected = (list: TRotatingItem[]) => {
   const selectedMap: Record<number, boolean> = list
     .filter(({ checked }) => checked)
@@ -63,7 +61,6 @@ export const rotatingCarouselReducer = (state = initialValue, action: any) => {
   const newState = structuredClone(state)
 
   newState.selectedList = getHowManySelected(state.list)
-  console.log(newState.selectedList)
 
   switch (action.type) {
     case C.ROTATING_CAROUSEL_REMOVE_INPUT:
