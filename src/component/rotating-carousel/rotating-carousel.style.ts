@@ -23,6 +23,17 @@ export const SCurrent = styled.div`
   font-family: 'Johnnie Walker Sans Headline';
 `
 
+export const SAction = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  padding-top: 9rem;
+`
+
 export const SSelected = styled.div`
   height: 3.25rem;
   display: flex;

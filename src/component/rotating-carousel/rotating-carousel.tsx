@@ -1,12 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react'
-import type {
-  ChangeEvent,
-  FocusEvent,
-  KeyboardEvent,
-  MouseEvent,
-  TouchEvent,
-} from 'react'
+import type { ChangeEvent, FocusEvent, MouseEvent, TouchEvent } from 'react'
 import {
+  SAction,
   SButton,
   SCurrent,
   SItemGrid,
@@ -20,9 +15,9 @@ import {
   initialValue,
   rotatingCarouselReducer,
 } from './rotating-carousel.reducer'
-import { RotatingItem } from '../rotating-item'
 import { A } from './rotating-carousel.action'
 import { generateSequence } from '../../util'
+import { Button, RotatingItem } from '..'
 
 export const RotatingCarousel = () => {
   const rotatingCarouselRef = useRef(null)
@@ -104,6 +99,11 @@ export const RotatingCarousel = () => {
   const whichOneFocused = (lastFocusedIndex + 1) % originalItemNumber
   const whichOneFocusedPretty =
     whichOneFocused === 0 ? originalItemNumber : whichOneFocused
+
+  const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const { name } = e.target as HTMLButtonElement
+    console.log(name)
+  }
 
   return (
     <div>
@@ -194,12 +194,21 @@ export const RotatingCarousel = () => {
             onClick={focusNext}
           />
         </SItemGrid>
+
+        <SAction>
+          <Button name="next" onClick={onClick} theme="full">
+            Next
+          </Button>
+
+          <Button name="prev" onClick={onClick} theme="outlined">
+            Prev
+          </Button>
+
+          <Button name="skip" onClick={onClick} theme="text">
+            Skip
+          </Button>
+        </SAction>
       </SRotatingCarousel>
-      <div>
-        <button>Lorem, ipsum.</button>
-        <button>Asperiores, ut.</button>
-        <button>Nisi, iusto!</button>
-      </div>
     </div>
   )
 }
