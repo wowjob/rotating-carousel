@@ -9,7 +9,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'public/inc/assets/font/**/*', // Assumes you want to copy all files. Adjust pattern as needed.
+          src: 'public/inc/fonts/**/*', // Assumes you want to copy all files. Adjust pattern as needed.
           dest: 'inc/fonts',
         },
       ],
