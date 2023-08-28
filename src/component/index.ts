@@ -1,3 +1,4 @@
+console.log('custom build for rotating carousel')
 // component
 export { Button } from './button'
 export { Global } from './global'
