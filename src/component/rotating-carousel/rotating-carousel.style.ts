@@ -126,13 +126,13 @@ export const SRemoveButton = styled.button`
   font-size: 1.25rem;
   transition: 250ms;
 
-  &,
-  &:hover {
+  &&,
+  &&:hover {
     background: transparent;
   }
 
   &:hover {
-    transform: scale(1.025);
+    transform: scale(1.05);
   }
 
   &::after {
