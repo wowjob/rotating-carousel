@@ -1,6 +1,6 @@
 import type { MouseEvent, ReactNode } from 'react'
 
-const buttonThemeList = ['full', 'outlined', 'text'] as const
+const buttonThemeList = ['fill', 'outlined', 'text'] as const
 type TButtonTheme = (typeof buttonThemeList)[number]
 
 export type TButtonBase = {

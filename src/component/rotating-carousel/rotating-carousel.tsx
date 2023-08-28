@@ -196,12 +196,8 @@ export const RotatingCarousel = () => {
         </SItemGrid>
 
         <SAction>
-          <Button name="next" onClick={onClick} theme="full">
+          <Button name="next" onClick={onClick} theme="fill">
             Next
-          </Button>
-
-          <Button name="prev" onClick={onClick} theme="outlined">
-            Prev
           </Button>
 
           <Button name="skip" onClick={onClick} theme="text">

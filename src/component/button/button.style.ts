@@ -11,11 +11,11 @@ export const SButton = styled.button<$TButton>`
 
   border: 2px solid
     ${({ $theme }) =>
-      ['full', 'outlined'].includes($theme) ? 'var(--black)' : 'transparent'};
+      ['fill', 'outlined'].includes($theme) ? 'var(--black)' : 'transparent'};
   color: ${({ $theme }) =>
     ['text', 'outlined'].includes($theme) ? 'var(--black)' : 'var(--white)'};
   background-color: ${({ $theme }) =>
-    'full' === $theme ? 'var(--black)' : 'transparent'};
+    'fill' === $theme ? 'var(--black)' : 'transparent'};
 
   @media screen and (min-width: 48rem) {
     width: 30rem;

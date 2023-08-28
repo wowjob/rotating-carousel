@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && sh build.sh",
+    "build": "vite build",
+    "postbuild": "cp dist/assets/rotating-carousel.js public/js/rotating-carousel.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
