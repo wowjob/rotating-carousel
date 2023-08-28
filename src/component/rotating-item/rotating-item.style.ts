@@ -73,6 +73,10 @@ export const SRotatingImageWrapper = styled.div<$TRotatingItem>`
 export const SRotatingLabel = styled.label`
   cursor: pointer;
   position: relative;
+  -webkit-user-select: none; /* Safari, Chrome, and Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard syntax */
 `
 
 export const SRotatingDescription = styled.p<$TRotatingItem>`
