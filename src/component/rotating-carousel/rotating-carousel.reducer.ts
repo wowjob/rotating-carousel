@@ -3,10 +3,20 @@ import { TRotatingItemBase } from '../rotating-item/rotating-item.type'
 import { C } from './rotating-carousel.constant'
 
 const minimumItemNumber = 24
+type TTaxonomyValue = {
+  id: number
+  label: string
+}
 
 type TAction = {
   buttonList: string[]
   prefix: string
+}
+
+type TConfig = {
+  taxonomyProfile: string
+  taxonomyName: string
+  saveData: string
 }
 
 type TRotatingCarousel = {
@@ -22,6 +32,10 @@ type TRotatingCarousel = {
   currentSelectedJoinText: string
   mainTitle: string
   action: TAction
+  config: TConfig
+  nextPage: string
+  taxonomyValues: string
+  // taxonomyValueList: TTaxonomyValue[]
 }
 
 export const initialValue: TRotatingCarousel = {

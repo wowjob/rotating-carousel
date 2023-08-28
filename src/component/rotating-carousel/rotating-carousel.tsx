@@ -17,7 +17,7 @@ import {
 } from './rotating-carousel.reducer'
 import { A } from './rotating-carousel.action'
 import { generateSequence } from '../../util'
-import { Button, RotatingItem } from '..'
+import { Button, RotatingItem, TRotatingItem } from '..'
 
 export const RotatingCarousel = () => {
   const rotatingCarouselRef = useRef(null)
@@ -40,6 +40,7 @@ export const RotatingCarousel = () => {
     currentSelectedJoinText,
     mainTitle,
     action,
+    config,
   } = state
 
   useEffect(() => {
@@ -100,14 +101,56 @@ export const RotatingCarousel = () => {
   const whichOneFocusedPretty =
     whichOneFocused === 0 ? originalItemNumber : whichOneFocused
 
-  const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const onClick = async (e: MouseEvent<HTMLButtonElement>) => {
     const { name } = e.target as HTMLButtonElement
 
     if (action.buttonList.includes(name)) {
       const className = `.${action.prefix}${name} > :first-child`
       const actionElement = document.querySelector(className)
+
+      const taxonomyValueMap: Record<string, string> = list
+        .filter(({ checked }) => checked)
+        .reduce(
+          (a, c: TRotatingItem) => ({ ...a, [c.dataId || '']: c.label }),
+          {},
+        )
+
+      const taxonomyValueList = Object.keys(taxonomyValueMap).map((key) => ({
+        id: +key,
+        label: taxonomyValueMap[key],
+      }))
+
+      console.log(taxonomyValueList)
       if (actionElement) {
         const href = actionElement.getAttribute('href')
+
+        const postData = {
+          // taxonomyProfile: '1',
+          // taxonomyName: '2',
+          // saveData: '3',
+          ...config,
+          taxonomyValues: JSON.stringify(taxonomyValueList),
+          nextPage: href,
+        }
+
+        try {
+          //
+          const { result, nextPage } = await (
+            await fetch(postURL, {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify(postData),
+            })
+          ).json()
+
+          if (result) {
+            window.location.assign(nextPage)
+          }
+        } catch (error: Error | any) {
+          console.log('Error: ', error.message)
+        }
       }
     }
   }
