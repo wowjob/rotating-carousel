@@ -10,6 +10,7 @@ export const SRotatingMainTitle = styled.h1`
   text-align: center;
   padding-inline: 1rem;
   position: relative;
+  color: var(--text-color, --black);
 `
 
 export const SRotatingInfo = styled.div`
@@ -17,12 +18,14 @@ export const SRotatingInfo = styled.div`
   font-size: 1rem;
   line-height: 1.5;
   position: relative;
+  color: var(--text-color, --black);
 `
 
 export const SCurrent = styled.div`
   font-size: 1.25rem;
   line-height: 1.25rem;
   font-family: 'Johnnie Walker Sans Headline';
+  color: var(--text-color, --black);
 `
 
 export const SAction = styled.div`
@@ -34,6 +37,7 @@ export const SAction = styled.div`
   justify-content: center;
   padding-inline: 1rem;
   padding-top: 9rem;
+  color: var(--text-color, --black);
 `
 
 export const SSelected = styled.div`
@@ -92,7 +96,6 @@ export const SButton = styled.button<$TButton>`
   transition: 250ms;
   background-color: var(--black);
   color: var(--white);
-  color: $white;
   font-family: 'jw-icon' !important;
 
   // fix bleeding css
@@ -119,8 +122,8 @@ export const SButton = styled.button<$TButton>`
 export const SRemoveButton = styled.button`
   align-self: center;
   cursor: pointer;
-  border: 0.125rem solid var(--black);
-  color: var(--black);
+  border: 0.125rem solid var(--text-color, --black);
+  color: var(--text-color, --black);
   font-family: 'Johnnie Walker Sans Headline';
   height: 2.25rem;
   padding-inline: 0.625rem;
@@ -142,7 +145,7 @@ export const SRemoveButton = styled.button`
   }
 
   &::after {
-    color: var(--black);
+    color: var(--text-color, --black);
     font-family: 'jw-icon';
     content: '\\e904';
     font-size: 0.75rem;

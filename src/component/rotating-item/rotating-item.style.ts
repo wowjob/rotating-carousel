@@ -86,6 +86,7 @@ export const SRotatingDescription = styled.p<$TRotatingItem>`
   pointer-events: none;
   transition: 250ms;
   opacity: ${({ $focused }) => ($focused ? 1 : 0)};
+  color: var(--text-color, --black);
 `
 
 export const SRotatingInput = styled.input`

@@ -21,7 +21,7 @@ import { generateSequence } from '../../util'
 import { Button, RotatingItem, TRotatingItem } from '..'
 
 export const RotatingCarousel = () => {
-  const rotatingCarouselRef = useRef(null)
+  const rotatingCarouselRef = useRef<HTMLDivElement>(null)
   const swipeData = useRef({
     startX: 0,
     endX: 0,
@@ -52,6 +52,17 @@ export const RotatingCarousel = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(A.actionToggleInput(+(e.target.dataset.id || 0)))
+    if (rotatingCarouselRef && rotatingCarouselRef.current) {
+      const elementData = list.find(
+        ({ dataId }) => dataId === +(e.target.dataset.id || 0),
+      )
+      if (elementData) {
+        rotatingCarouselRef.current.style.setProperty(
+          '--text-color',
+          elementData.textColour as string,
+        )
+      }
+    }
   }
 
   const onFocus = (e: FocusEvent<HTMLInputElement>) => {
