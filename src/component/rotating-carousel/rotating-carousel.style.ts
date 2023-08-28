@@ -9,12 +9,14 @@ export const SRotatingMainTitle = styled.h1`
   margin: 0;
   text-align: center;
   padding-inline: 1rem;
+  position: relative;
 `
 
 export const SRotatingInfo = styled.div`
   font-family: 'Johnnie Walker Serif Book';
   font-size: 1rem;
   line-height: 1.5;
+  position: relative;
 `
 
 export const SCurrent = styled.div`
@@ -38,6 +40,7 @@ export const SSelected = styled.div`
   height: 3.25rem;
   display: flex;
   gap: 0.5rem;
+  position: relative;
 `
 
 export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
@@ -49,10 +52,21 @@ export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
   padding-top: 3rem;
   overflow: hidden;
   height: 57.5rem;
-  background: url(${({ $backgroundImage }) => $backgroundImage}), var(--orange);
-  background-position: center;
-  background-size: cover;
   transition: 250ms;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url(${({ $backgroundImage }) => $backgroundImage}),
+      var(--orange);
+    background-position: center;
+    background-size: cover;
+    filter: blur(5px);
+    isolation: isolate;
+    z-index: -1;
+  }
 `
 type $TButton = {
   $direction: 'left' | 'right'
@@ -78,6 +92,7 @@ export const SButton = styled.button<$TButton>`
   // fix bleeding css
   padding: 0;
   cursor: pointer;
+  position: relative;
 
   &:focus-visible {
     outline: 0.5rem solid $blaze-orange;
@@ -123,6 +138,7 @@ export const SItemGrid = styled.div`
   grid-template-columns: auto 17.5rem auto;
   gap: 0.75rem;
   min-height: 20.9rem;
+  position: relative;
 
   @media screen and (max-width: 48rem) {
     grid-template-columns: auto 14.25rem auto;
