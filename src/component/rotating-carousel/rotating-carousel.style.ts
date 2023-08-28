@@ -113,7 +113,8 @@ export const SButton = styled.button<$TButton>`
 export const SRemoveButton = styled.button`
   align-self: center;
   cursor: pointer;
-  border: 0.125rem solid black;
+  border: 0.125rem solid var(--black);
+  color: var(--black);
   font-family: 'Johnnie Walker Sans Headline';
   height: 2.25rem;
   padding-inline: 0.625rem;
@@ -123,9 +124,19 @@ export const SRemoveButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 1.25rem;
-  background: transparent;
+  transition: 250ms;
+
+  &,
+  &:hover {
+    background: transparent;
+  }
+
+  &:hover {
+    transform: scale(1.025);
+  }
 
   &::after {
+    color: var(--black);
     font-family: 'jw-icon';
     content: '\\e904';
     font-size: 0.75rem;
