@@ -1,9 +1,9 @@
 import { SButton } from './button.style'
 import type { TButton } from './button.type'
 
-export const Button = ({ theme, children, onClick }: TButton) => {
+export const Button = ({ theme, children, onClick, name }: TButton) => {
   return (
-    <SButton $theme={theme} $onClick={onClick}>
+    <SButton name={name} $theme={theme} onClick={onClick}>
       {children}
     </SButton>
   )

@@ -3,13 +3,16 @@ import type { MouseEvent, ReactNode } from 'react'
 const buttonThemeList = ['full', 'outlined', 'text'] as const
 type TButtonTheme = (typeof buttonThemeList)[number]
 
-export type TButton = {
-  name?: string
+export type TButtonBase = {
   theme: TButtonTheme
-  children?: ReactNode
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
+export type TButton = {
+  name?: string
+  children?: ReactNode
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+} & TButtonBase
+
 export type $TButton = {
-  [$ in keyof TButton as `$${string & $}`]: TButton[$]
+  [$ in keyof TButtonBase as `$${string & $}`]: TButtonBase[$]
 }

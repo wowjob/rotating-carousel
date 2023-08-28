@@ -56,7 +56,7 @@ Error generating stack: `+l.message+`
   @media screen and (min-width: 48rem) {
     width: 30rem;
   }
-`,Kl=({theme:e,children:t,onClick:n})=>L.jsx(Im,{$theme:e,$onClick:n,children:t}),Om=nd`
+`,Kl=({theme:e,children:t,onClick:n,name:r})=>L.jsx(Im,{name:r,$theme:e,onClick:n,children:t}),Om=nd`
   *,
   *::before,
   *::after {
