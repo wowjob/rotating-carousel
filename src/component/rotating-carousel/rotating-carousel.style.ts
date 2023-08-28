@@ -108,6 +108,7 @@ export const SRemoveButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 1.25rem;
+  background: transparent;
 
   &::after {
     font-family: 'jw-icon';
