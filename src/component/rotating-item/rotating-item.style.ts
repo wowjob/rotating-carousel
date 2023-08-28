@@ -75,7 +75,7 @@ export const SRotatingLabel = styled.label`
   position: relative;
 `
 
-export const SRotatingDescription = styled.p`
+export const SRotatingDescription = styled.p<$TRotatingItem>`
   position: relative;
   min-height: 5rem;
   font-size: 1rem;
@@ -85,6 +85,7 @@ export const SRotatingDescription = styled.p`
   text-align: center;
   pointer-events: none;
   transition: 250ms;
+  opacity: ${({ $focused }) => ($focused ? 1 : 0)};
 `
 
 export const SRotatingInput = styled.input`

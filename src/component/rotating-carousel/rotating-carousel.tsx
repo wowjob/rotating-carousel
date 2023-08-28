@@ -182,7 +182,7 @@ export const RotatingCarousel = () => {
                   onChange={onChange}
                   onFocus={onFocus}
                   checked={checked}
-                  focused={lastFocused === `rotating-item-selector-${id}`}
+                  focused={lastFocused === `rotating-item-selector-${key + 1}`}
                 />
               ),
             )}

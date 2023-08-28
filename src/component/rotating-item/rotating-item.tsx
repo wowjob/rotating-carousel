@@ -22,6 +22,7 @@ export const RotatingItem = ({
   focused,
   angle,
 }: TRotatingItem) => {
+  console.log(focused)
   return (
     <SRotatingLabel htmlFor={`rotating-item-selector-${id}`}>
       <SRotatingItem
@@ -48,7 +49,9 @@ export const RotatingItem = ({
           </SRotatingImageText>
         </SRotatingImageWrapper>
 
-        <SRotatingDescription>{description}</SRotatingDescription>
+        <SRotatingDescription $focused={focused}>
+          {description}
+        </SRotatingDescription>
       </SRotatingItem>
     </SRotatingLabel>
   )
