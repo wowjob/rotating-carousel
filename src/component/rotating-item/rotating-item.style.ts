@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import type { $TRotatingItem } from './rotating-item.type'
 
 export const SRotatingItem = styled.div<$TRotatingItem>`
-  transform: translateY(${({ $focused }) => ($focused ? 0 : '-18rem')})
-    scale(${({ $focused }) => ($focused ? 1 : 0.75)})
-    rotate(${({ $angle = 0 }) => `${$angle * 18}deg`});
-  transform-origin: 50% 80rem;
+  transform: rotate(${({ $angle = 0 }) => `${$angle * 15}deg`});
+  transform-origin: 50% 90rem;
   transition: 250ms;
   display: flex;
   flex-direction: column;
@@ -14,9 +12,7 @@ export const SRotatingItem = styled.div<$TRotatingItem>`
 
   /* mobile only */
   @media (pointer: coarse) and (max-width: 48rem) {
-    transform: translateY(${({ $focused }) => ($focused ? 0 : '-17rem')})
-      scale(${({ $focused }) => ($focused ? 1 : 0.75)})
-      rotate(${({ $angle = 0 }) => `${$angle * 16.5}deg`});
+    transform: rotate(${({ $angle = 0 }) => `${$angle * 11}deg`});
   }
 `
 
@@ -38,6 +34,7 @@ export const SRotatingImageWrapper = styled.div<$TRotatingItem>`
   width: 14.25rem; // 228px
   height: 17rem; // 272px
   position: relative;
+  transform: scale(${({ $focused }) => ($focused ? 1 : 0.75)});
 
   &::before,
   &::after {
@@ -65,6 +62,11 @@ export const SRotatingImageWrapper = styled.div<$TRotatingItem>`
     color: ${({ $checked }) => ($checked ? 'var(--white)' : 'transparent')};
     background: ${({ $checked }) =>
       $checked ? 'var(--black)' : 'transparent'};
+  }
+
+  @media screen and (min-width: 48rem) {
+    width: 17.5rem;
+    height: 20.9rem;
   }
 `
 

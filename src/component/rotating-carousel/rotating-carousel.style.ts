@@ -119,8 +119,14 @@ export const SRemoveButton = styled.button`
 export const SItemGrid = styled.div`
   display: grid;
   height: 17rem; // 272px
-  grid-template-columns: auto 14.25rem auto;
+  grid-template-columns: auto 17.5rem auto;
   gap: 0.75rem;
+  min-height: 20.9rem;
+
+  @media screen and (max-width: 48rem) {
+    grid-template-columns: auto 14.25rem auto;
+    min-height: 17rem;
+  }
 `
 
 export const SItemWrapper = styled.div`

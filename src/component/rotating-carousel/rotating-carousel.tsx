@@ -112,7 +112,7 @@ export const RotatingCarousel = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        $backgroundImage={list[whichOneFocused + 1].backgroundImage || ''}
+        $backgroundImage={list[lastFocusedIndex].backgroundImage || ''}
       >
         <SRotatingMainTitle>{mainTitle}</SRotatingMainTitle>
 

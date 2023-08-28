@@ -2,7 +2,7 @@ import type { TRotatingItem } from '../rotating-item'
 import { TRotatingItemBase } from '../rotating-item/rotating-item.type'
 import { C } from './rotating-carousel.constant'
 
-const minimumItemNumber = 55
+const minimumItemNumber = 24
 
 type TRotatingCarousel = {
   postURL: string

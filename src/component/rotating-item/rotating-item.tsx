@@ -41,7 +41,7 @@ export const RotatingItem = ({
           checked={checked}
           autoFocus={focused}
         />
-        <SRotatingImageWrapper $checked={checked}>
+        <SRotatingImageWrapper $focused={focused} $checked={checked}>
           <Image src={backgroundImage || ''} alt={`${label}: ${description}`} />
           <SRotatingImageText $textColour={textColour}>
             {label}
