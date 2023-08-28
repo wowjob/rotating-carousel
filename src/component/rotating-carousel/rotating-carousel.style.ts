@@ -43,17 +43,24 @@ export const SSelected = styled.div`
   position: relative;
 `
 
-export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
+export const SContent = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+`
+
+export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
   position: relative;
   padding-top: 3rem;
   overflow: hidden;
   height: 57.5rem;
   transition: 250ms;
   position: relative;
+  background-color: var(--orange);
 
   &::before {
     content: '';
@@ -65,7 +72,6 @@ export const SRotatingCarousel = styled.div<$TRotatingCarousel>`
     background-size: cover;
     filter: blur(5px);
     isolation: isolate;
-    z-index: -1;
   }
 `
 type $TButton = {

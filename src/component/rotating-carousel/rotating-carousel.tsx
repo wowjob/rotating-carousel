@@ -3,6 +3,7 @@ import type { ChangeEvent, FocusEvent, MouseEvent, TouchEvent } from 'react'
 import {
   SAction,
   SButton,
+  SContent,
   SCurrent,
   SItemGrid,
   SRemoveButton,
@@ -164,96 +165,93 @@ export const RotatingCarousel = () => {
         onTouchEnd={handleTouchEnd}
         $backgroundImage={list[lastFocusedIndex].backgroundImage || ''}
       >
-        <SRotatingMainTitle>{mainTitle}</SRotatingMainTitle>
-
-        <SRotatingInfo>
-          <span>{maxSelectedText}</span>
-          {selectedList.length > 0 && (
-            <span>
-              {' '}
-              ({selectedList.length}/{maxSelected})
-            </span>
-          )}
-        </SRotatingInfo>
-
-        <SSelected>
-          {selectedList.length > 0 &&
-            selectedList.map(({ dataId, label }) => (
-              <SRemoveButton
-                key={dataId}
-                name={String(dataId)}
-                onClick={removeItem}
-              >
-                {label}
-              </SRemoveButton>
-            ))}
-        </SSelected>
-
-        <SCurrent>
-          {whichOneFocusedPretty}
-          {currentSelectedJoinText}
-          {originalItemNumber}
-        </SCurrent>
-
-        <SItemGrid>
-          <SButton
-            aria-label="previous item"
-            $direction="left"
-            onClick={focusPrev}
-          />
-          <div>
-            {list.map(
-              (
-                {
-                  backgroundImage,
-                  dataId,
-                  description,
-                  label,
-                  id,
-                  textColour,
-                  checked,
-                  itemImage,
-                },
-                key,
-              ) => (
-                <RotatingItem
-                  key={id}
-                  id={id}
-                  angle={
-                    arr.includes(key)
-                      ? arr.indexOf(key) - howManyLeftAndRight + 1
-                      : 12
-                  }
-                  textColour={textColour}
-                  backgroundImage={itemImage}
-                  dataId={dataId}
-                  description={description}
-                  label={label}
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  checked={checked}
-                  focused={lastFocused === `rotating-item-selector-${key + 1}`}
-                />
-              ),
+        <SContent>
+          <SRotatingMainTitle>{mainTitle}</SRotatingMainTitle>
+          <SRotatingInfo>
+            <span>{maxSelectedText}</span>
+            {selectedList.length > 0 && (
+              <span>
+                {' '}
+                ({selectedList.length}/{maxSelected})
+              </span>
             )}
-          </div>
-
-          <SButton
-            aria-label="next item"
-            $direction="right"
-            onClick={focusNext}
-          />
-        </SItemGrid>
-
-        <SAction>
-          <Button name="next" onClick={onClick} theme="fill">
-            Next
-          </Button>
-
-          <Button name="skip" onClick={onClick} theme="text">
-            Skip
-          </Button>
-        </SAction>
+          </SRotatingInfo>
+          <SSelected>
+            {selectedList.length > 0 &&
+              selectedList.map(({ dataId, label }) => (
+                <SRemoveButton
+                  key={dataId}
+                  name={String(dataId)}
+                  onClick={removeItem}
+                >
+                  {label}
+                </SRemoveButton>
+              ))}
+          </SSelected>
+          <SCurrent>
+            {whichOneFocusedPretty}
+            {currentSelectedJoinText}
+            {originalItemNumber}
+          </SCurrent>
+          <SItemGrid>
+            <SButton
+              aria-label="previous item"
+              $direction="left"
+              onClick={focusPrev}
+            />
+            <div>
+              {list.map(
+                (
+                  {
+                    backgroundImage,
+                    dataId,
+                    description,
+                    label,
+                    id,
+                    textColour,
+                    checked,
+                    itemImage,
+                  },
+                  key,
+                ) => (
+                  <RotatingItem
+                    key={id}
+                    id={id}
+                    angle={
+                      arr.includes(key)
+                        ? arr.indexOf(key) - howManyLeftAndRight + 1
+                        : 12
+                    }
+                    textColour={textColour}
+                    backgroundImage={itemImage}
+                    dataId={dataId}
+                    description={description}
+                    label={label}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    checked={checked}
+                    focused={
+                      lastFocused === `rotating-item-selector-${key + 1}`
+                    }
+                  />
+                ),
+              )}
+            </div>
+            <SButton
+              aria-label="next item"
+              $direction="right"
+              onClick={focusNext}
+            />
+          </SItemGrid>
+          <SAction>
+            <Button name="next" onClick={onClick} theme="fill">
+              Next
+            </Button>
+            <Button name="skip" onClick={onClick} theme="text">
+              Skip
+            </Button>
+          </SAction>
+        </SContent>
       </SRotatingCarousel>
     </div>
   )
